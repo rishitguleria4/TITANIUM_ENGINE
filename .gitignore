@@ -1,0 +1,57 @@
+# === OS-Specific Files ===
+.DS_Store
+Thumbs.db
+
+# === IDEs and Editors ===
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace
+
+# === Build Files ===
+build/
+cmake-build-*/
+CMakeFiles/
+CMakeCache.txt
+Makefile
+compile_commands.json
+
+# === C++ Object and Binary Files ===
+*.o
+*.obj
+*.so
+*.a
+*.out
+*.exe
+
+# === Clangd and LSP Cache ===
+.cache/
+.clangd/
+.clang-tidy
+.clang-format
+
+# === Logs and Dumps ===
+*.log
+*.core
+*.stackdump
+
+# === Backup Files ===
+*~
+*.swp
+*.bak
+*.tmp
+
+# === Generated Files ===
+*.idx
+*.pch
+*.pdb
+*.dll
+*.dSYM/
+
+# === Python/Script Artifacts (if mixed) ===
+__pycache__/
+*.py[cod]
+
+# === Git Excludes ===
+
+	
