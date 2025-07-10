@@ -1,0 +1,2 @@
+/usr/bin/ar qc libtitanium_engine.a CMakeFiles/titanium_engine.dir/src/order_book.cpp.o CMakeFiles/titanium_engine.dir/src/trade_event.cpp.o CMakeFiles/titanium_engine.dir/src/trade_logger_file.cpp.o
+/usr/bin/ranlib libtitanium_engine.a

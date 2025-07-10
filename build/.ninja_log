@@ -1,0 +1,7 @@
+# ninja log v6
+34	2090	1752148594199118641	CMakeFiles/titanium_engine.dir/src/trade_event.cpp.o	16cb08681768cddf
+1	2260	1752150364386964974	CMakeFiles/titanium_engine.dir/src/order_book.cpp.o	8aa4599a07a48275
+2	498	1752150364387965003	CMakeFiles/basic_test.dir/test/basic_test.cpp.o	f52b5bc9b9d184ac
+2260	2292	1752150366646030380	libtitanium_engine.a	d111d22da7736af5
+34	2096	1752148594199315439	CMakeFiles/titanium_engine.dir/src/trade_logger_file.cpp.o	2615ccc56744fb34
+2292	2585	1752150366678031300	basic_test	d09f63b3eec2d30b

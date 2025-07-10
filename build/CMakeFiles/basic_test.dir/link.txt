@@ -1,0 +1,1 @@
+/usr/bin/c++  -O3 -march=native -flto -Wall -Wextra -DNDEBUG -Wl,--dependency-file=CMakeFiles/basic_test.dir/link.d CMakeFiles/basic_test.dir/test/basic_test.cpp.o -o basic_test  libtitanium_engine.a
