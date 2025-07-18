@@ -1,39 +1,38 @@
-cmake_minimum_required(VERSION 3.20)
-project(TITANIUM_ENGINE LANGUAGES CXX)
+cmake_minimum_required(VERSION 3.14)
+project(TitaniumEngine)
 
-# Set C++ standard and compiler flags
-set(CMAKE_CXX_STANDARD 20)
-set(CMAKE_CXX_STANDARD_REQUIRED ON)
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -O3 -march=native -flto -Wall -Wextra -DNDEBUG")
+set(CMAKE_CXX_STANDARD 17)
 
-# Create the engine library
-add_library(titanium_engine STATIC
-    src/order_book.cpp
-    src/trade_event.cpp  
-    src/trade_logger_file.cpp 
-)
-set(SOURCES
+# Main engine sources
+add_library(titanium_engine
     src/order_book.cpp
     src/trade_event.cpp
-    src/trade_logger_file.cpp  # <-- Add this
+    src/trade_logger_file.cpp
+    src/utils/rdtsc.cpp
+    src/utils/rdtsc_calibration.cpp
 )
 
+target_include_directories(titanium_engine PUBLIC include)
 
-# Specify include path for the engine
-target_include_directories(titanium_engine PUBLIC
-    ${CMAKE_SOURCE_DIR}/include
+# ======================
+# ✅ OpenCV Integration
+# ======================
+find_package(OpenCV REQUIRED)
+
+# Trade replay test
+add_executable(trade_replay_test
+    test/test_trade_replay.cpp
+    tools/trade_replay.cpp
 )
 
-# Create the test binary
-add_executable(basic_test
+target_include_directories(trade_replay_test PRIVATE include tools tools/opencv)
+target_link_libraries(trade_replay_test PRIVATE titanium_engine ${OpenCV_LIBS})
+
+# Book visualizer test
+add_executable(book_visualizer_test
     test/basic_test.cpp
+    tools/opencv/book_visualizer.cpp
 )
 
-# Link test with the engine
-target_link_libraries(basic_test PRIVATE titanium_engine)
-set(CMAKE_CXX_STANDARD 17)  # ✅ safer than 20 or 23
-set(CMAKE_CXX_STANDARD_REQUIRED ON)
-target_sources(titanium_engine PRIVATE
-    src/order_book.cpp
-    src/trade_logger_file.cpp   # ✅ Add this
-)
+target_include_directories(book_visualizer_test PRIVATE include tools tools/opencv)
+target_link_libraries(book_visualizer_test PRIVATE titanium_engine ${OpenCV_LIBS})
