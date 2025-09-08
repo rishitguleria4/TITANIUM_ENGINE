@@ -12,27 +12,13 @@ add_library(titanium_engine
     src/utils/rdtsc_calibration.cpp
 )
 
-target_include_directories(titanium_engine PUBLIC include)
+# Make sure compiler finds headers under include/titanium/...
+target_include_directories(titanium_engine PUBLIC ${CMAKE_SOURCE_DIR}/include)
 
-# ======================
-# ✅ OpenCV Integration
-# ======================
-find_package(OpenCV REQUIRED)
-
-# Trade replay test
+# Tests / executables
 add_executable(trade_replay_test
     test/test_trade_replay.cpp
-    tools/trade_replay.cpp
 )
 
-target_include_directories(trade_replay_test PRIVATE include tools tools/opencv)
-target_link_libraries(trade_replay_test PRIVATE titanium_engine ${OpenCV_LIBS})
-
-# Book visualizer test
-add_executable(book_visualizer_test
-    test/basic_test.cpp
-    tools/opencv/book_visualizer.cpp
-)
-
-target_include_directories(book_visualizer_test PRIVATE include tools tools/opencv)
-target_link_libraries(book_visualizer_test PRIVATE titanium_engine ${OpenCV_LIBS})
+# Link engine into the test executable
+target_link_libraries(trade_replay_test PRIVATE titanium_engine)
